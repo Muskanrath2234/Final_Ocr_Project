@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        /* Basic styling for the navigation bar */
+         body {
+            font-family: Poppins;
+
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
+        }
+       nav {
+            background-color: #ffffff;
+            overflow: hidden;
+            padding: 10px;
+        }
+        nav a {
+               color: #2f2f30;
+            font-size: 1.4 rem;
+            font-weight: 500;
+                font-family: Poppins;
+            float: left;
+            display: block;
+
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+
+        }
+        nav a:hover {
+            color: #61c0bf;
+            transform: scale(1.05);
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <nav>
+        {% if user.is_authenticated %}
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'upload_aadhar' %}">Upload aadhar</a>
+            <a href="{% url 'upload_pan_card' %}">Upload pan</a>
+            <a href="{% url 'profile_view' %}">Profile</a>
+
+            <a class = "logout" href="{% url 'logout' %}">Logout</a>
+
+
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </nav>
+    {% block style %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
